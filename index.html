@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextech Fabricators - Industrial Fabrication Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-bar a:hover {
+            color: #dc3545;
+        }
+
+        .top-bar i {
+            margin-right: 5px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: #dc3545;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #dc3545;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dc3545;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide-1 {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.9), rgba(200, 35, 51, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23333" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide-2 {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(45, 45, 45, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23555" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide-3 {
+            background: linear-gradient(135deg, rgba(108, 117, 125, 0.9), rgba(73, 80, 87, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23444" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #dc3545;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 1.4s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+        }
+
+        .hero-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #dc3545;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .about-cards {
+            display: grid;
+            gap: 20px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.2);
+        }
+
+        .about-card h4 {
+            font-size: 22px;
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: #666;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #dc3545;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        /* Products Section */
+        .products {
+            background: #f8f9fa;
+        }
+
+        .product-category {
+            margin-bottom: 60px;
+        }
+
+        .product-category h3 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #dc3545;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h4 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-btn {
+            color: #dc3545;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s;
+        }
+
+        .product-btn:hover {
+            gap: 10px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::after {
+            content: 'Installation Project';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            color: #dc3545;
+            margin-top: 5px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #dc3545;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .contact-form h3 {
+            color: #1a1a1a;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #dc3545;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d0d;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #dc3545;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #adb5bd;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #dc3545;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #6c757d;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        .phone {
+            background: #0088cc;
+        }
+
+        .email {
+            background: #dc3545;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <a href="mailto:nextech5644@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    nextech5644@gmail.com
+                </a>
+            </div>
+            <div>
+                <i class="fas fa-phone"></i>
+                <a href="tel:+919974768873">+91 9974768873</a> |
+                <a href="tel:+919924317102">+91 9924317102</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">NF</div>
+                <div class="logo-text">
+                    <h1><span>NEXTECH</span> FABRICATORS</h1>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#products">Our Products</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-btn">Get A Quote</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-slide hero-slide-1 active">
+            <div class="hero-content">
+                <div>
+                    <h2>WELCOME TO NEXTECH FABRICATORS</h2>
+                    <p>Leading Industrial Fabrication Solutions</p>
+                    <a href="#about" class="hero-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide hero-slide-2">
+            <div class="hero-content">
+                <div>
+                    <h2>Quality & Precision Engineering</h2>
+                    <p>Your Trusted Partner for Industrial Solutions</p>
+                    <a href="#products" class="hero-btn">Our Products</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide hero-slide-3">
+            <div class="hero-content">
+                <div>
+                    <h2>YOU DREAM IT... WE BUILD IT</h2>
+                    <p>Custom Solutions for Every Industrial Need</p>
+                    <a href="#contact" class="hero-btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-indicators">
+            <div class="indicator active" onclick="changeSlide(0)"></div>
+            <div class="indicator" onclick="changeSlide(1)"></div>
+            <div class="indicator" onclick="changeSlide(2)"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Nextech Fabricators</h2>
+                <p>Your Trusted Industrial Fabrication Partner</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Nextech Fabricators - Ahmedabad, Gujarat</h3>
+                    <p><strong>Location:</strong> Plot No. 152, Road No. 06, NK-3, Industrial Park, Bakrol, Bujrang, Ahmedabad (Gujarat) 382430</p>
+                    <p><strong>GSTIN:</strong> 24AAWFN1522C1ZI</p>
+                    <p>Nextech Fabricators is a leading industrial fabrication company based in Ahmedabad, Gujarat. We specialize in design, manufacturing, and installation of high-quality industrial equipment and fabricated structures.</p>
+                    <p>With a commitment to excellence and customer satisfaction, we provide custom-designed solutions tailored to meet the unique needs of our clients. Our team of experienced professionals ensures precision engineering, quality materials, and timely delivery of every project.</p>
+                    <p>We serve various industries including construction, manufacturing, food processing, and chemical industries with our comprehensive range of products and services.</p>
+                </div>
+                <div class="about-cards">
+                    <div class="about-card">
+                        <h4>Our Mission</h4>
+                        <p>To deliver superior quality industrial fabrication solutions that exceed customer expectations through innovation, precision engineering, and exceptional service.</p>
+                    </div>
+                    <div class="about-card">
+                        <h4>Our Vision</h4>
+                        <p>To become the benchmark for excellence in industrial fabrication, setting industry standards and continuously providing the best quality products to our valued customers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>What Makes Us Your Best Choice</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Expertise & Experience</h3>
+                    <p>Years of industry experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Customization</h3>
+                    <p>Tailored solutions for your needs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Quality Materials</h3>
+                    <p>Premium grade materials used</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Modern Technology</h3>
+                    <p>State-of-the-art equipment</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Timely Delivery</h3>
+                    <p>On-time project completion</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Customer Service</h3>
+                    <p>Dedicated support team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Comprehensive Range of Industrial Solutions</p>
+            </div>
+
+            <!-- Silos -->
+            <div class="product-category">
+                <h3>Silos</h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">🏭
+                            <img src="product_images/Media (10).jfif" alt="Storage Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Storage Silo</h4>
+                            <p>High-capacity storage solutions for bulk materials with superior quality construction.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🏗️
+                            <img src="product_images/Media (12).jfif" alt="Self Supported Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Self Supported Silo</h4>
+                            <p>Independent structure with integrated support system for efficient storage.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🔩
+                            <img src="product_images/Media (11).jfif" alt="Bolted Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Bolted Silo</h4>
+                            <p>Easy assembly modular silo design for quick installation and flexibility.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">⚡
+                            <img src="product_images/Media (14).jfif" alt="Cement Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Cement Silo</h4>
+                            <p>Specialized cement storage solution with optimal material flow system.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">💨
+                            <img src="product_images/Media (16).jfif" alt="Fly Ash Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Fly Ash Silo</h4>
+                            <p>Fly ash material handling and storage with dust-free operation.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">📊
+                            <img src="product_images/Media (15).jfif" alt="Weighing Type Silo" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Weighing Type Silo</h4>
+                            <p>Integrated weighing system for accurate measurement and inventory control.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Silo Accessories -->
+            <div class="product-category">
+                <h3>Silo Accessories</h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">🔄
+                            <img src="product_images/Media (9).jfif" alt="Screw Conveyor" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Screw Conveyor</h4>
+                            <p>Efficient material transport system with variable speed control.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🌪️
+                            <img src="product_images/Media (17).jfif" alt="Dust Collector" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Dust Collector</h4>
+                            <p>Advanced dust collection system for clean and safe operations.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            🔧
+                            <img src="product_images/Media (4).jfif" alt="Butterfly Valve" onerror="this.style.display='none'">
+                        </div>
+                        <div class="product-info">
+                            <h4>Butterfly Valve</h4>
+                            <p>Heavy-duty flanged butterfly valve for optimal flow control, featuring a durable body, leak-tight sealing, and reliable actuation for demanding industrial material handling.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">📡
+                            <img src="product_images/Media (19).jfif" alt="Level Indicator" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>Level Indicator</h4>
+                            <p>Advanced material level monitoring system for inventory management.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Products -->
+            <div class="product-category">
+                <h3>Other Products</h3>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">🛢️
+                            <img src="product_images/Media (11).jfif" alt="MS Storage Tank" onerror="this.style.display='none'"></div>
+                        <div class="product-info">
+                            <h4>MS Storage Tank</h4>
+                            <p>Mild steel storage solutions for various liquid and bulk materials.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            🚛
+                            <img src="product_images/Media (13).jfif" alt="Pneumatic Conveying / Bulker Unloading System" onerror="this.style.display='none'">
+                        </div>
+                        <div class="product-info">
+                            <h4>Bulker Unloading System</h4>
+                            <p>High-performance twin roots blower package with silencers. Ensures efficient, reliable, and quiet pneumatic material handling for rapid bulk unloading operations.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            🏢
+                            <img src="product_images/Media (23).jfif" alt="Heavy Plant Structure Fabrication" onerror="this.style.display='none'">
+                        </div>
+                        <div class="product-info">
+                            <h4>Heavy Plant Structure</h4>
+                            <p>Custom-fabricated large-scale curved steel structures and industrial ducting, meticulously engineered for high structural integrity and seamless plant integration.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            🔀
+                            <img src="product_images/Media (20).jfif" alt="Dual Feeding System" onerror="this.style.display='none'">
+                        </div>
+                        <div class="product-info">
+                            <h4>Dual Feeding System</h4>
+                            <p>Robust twin-screw feeding mechanism with integrated hopper, designed for high-capacity, uniform mix transport and precise continuous feeding in processing lines.</p>
+                            <a href="#contact" class="product-btn">Get Quote <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Installation Gallery</h2>
+                <p>Projects Completed Across India</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="product_images/Media (5).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (6).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (7).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (8).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (18).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (21).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (22).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="gallery-item"><img src="product_images/Media (10).jfif" style="width:100%; height:100%; object-fit:cover;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address:</strong><br>
+                            Plot No. 152, Road No. 06, NK-3,<br>
+                            Industrial Park, Bakrol, Bujrang,<br>
+                            Ahmedabad (Gujarat) 382430
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email:</strong><br>
+                            <a href="mailto:nextech5644@gmail.com">nextech5644@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            <a href="tel:+919974768873">+91 9974768873</a><br>
+                            <a href="tel:+919924317102">+91 9924317102</a><br>
+                            <a href="tel:+919601780070">+91 9601780070</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div>
+                            <strong>GSTIN:</strong><br>
+                            24AAWFN1522C1ZI
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Request A Quote</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name *" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email *" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Your Phone *" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message *" id="message" required></textarea>
+                    </div>
+                    <button class="submit-btn" onclick="submitForm()">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NEXTECH FABRICATORS</h3>
+                    <p>Leading industrial fabrication company based in Ahmedabad, Gujarat, specializing in high-quality silo design, construction, and installation.</p>
+                    <p><strong>GSTIN:</strong> 24AAWFN1522C1ZI</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#products">Our Products</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Products</h3>
+                    <a href="#products">Silos</a>
+                    <a href="#products">Silo Accessories</a>
+                    <a href="#products">Storage Tanks</a>
+                    <a href="#products">Plant Structures</a>
+                    <a href="#products">Conveyor Systems</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Plot No. 152, Road No. 06, NK-3,<br>
+                    Industrial Park, Bakrol,<br>
+                    Ahmedabad - 382430</p>
+                    <p><a href="mailto:nextech5644@gmail.com">nextech5644@gmail.com</a></p>
+                    <p><a href="tel:+919974768873">+91 9974768873</a></p>
+                    <p><a href="tel:+919924317102">+91 9924317102</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nextech Fabricators. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/919974768873" class="float-btn whatsapp" target="_blank" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+919974768873" class="float-btn phone" title="Call Us">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="mailto:nextech5644@gmail.com" class="float-btn email" title="Email Us">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                indicators[i].classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        function changeSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && phone && message) {
+                alert('Thank you for your inquiry! We will contact you soon.');
+                // Clear form
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Please fill all required fields.');
+            }
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.product-card, .feature-card, .about-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
+
